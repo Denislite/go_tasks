@@ -1,7 +1,6 @@
-package main
+package palindrome
 
 import (
-	"fmt"
 	"strings"
 )
 
@@ -13,9 +12,4 @@ func palindromeCheck(input string) bool {
 		}
 	}
 	return true
-}
-
-func main() {
-	test := "CivIc"
-	fmt.Println(palindromeCheck(test))
 }

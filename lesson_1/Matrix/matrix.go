@@ -1,8 +1,4 @@
-package main
-
-import (
-	"fmt"
-)
+package matrix
 
 type Matrix [][]int
 
@@ -18,9 +14,4 @@ func matrixElementSum(input Matrix) int {
 		}
 	}
 	return sum
-}
-
-func main() {
-	arr := Matrix{{1, 3, 2, 0}, {0, 5, 0, 9}, {1, 2, 3, 4}}
-	fmt.Println(matrixElementSum(arr))
 }

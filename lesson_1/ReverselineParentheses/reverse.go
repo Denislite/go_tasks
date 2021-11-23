@@ -1,8 +1,4 @@
-package main
-
-import (
-	"fmt"
-)
+package reverse
 
 func reverseLine(input string) (result string) {
 	for _, char := range input {
@@ -24,9 +20,4 @@ func reverseParantheses(input string) string {
 		}
 	}
 	return input
-}
-
-func main() {
-	test := "foo(bar(baz))blim"
-	fmt.Println(reverseParantheses(test))
 }
