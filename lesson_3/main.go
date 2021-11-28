@@ -20,11 +20,12 @@ type Student struct {
 var Students []Student
 
 func getStudents(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("Endpoint Hit: getStudents")
+	fmt.Println("Endpoint Hit: get all Students")
 	json.NewEncoder(w).Encode(Students)
 }
 
 func getSingleStudent(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("Endpoint Hit: get Student by ID")
 	vars := mux.Vars(r)
 	key := vars["id"]
 
@@ -36,6 +37,7 @@ func getSingleStudent(w http.ResponseWriter, r *http.Request) {
 }
 
 func createStudent(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("Endpoint Hit: create Student")
 	w.Header().Set("Content-Type", "appliction/json")
 	var student Student
 	_ = json.NewDecoder(r.Body).Decode(&student)
@@ -46,6 +48,7 @@ func createStudent(w http.ResponseWriter, r *http.Request) {
 }
 
 func deleteStudent(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("Endpoint Hit: delete Student by ID")
 	vars := mux.Vars(r)
 	id := vars["id"]
 
