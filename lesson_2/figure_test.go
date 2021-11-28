@@ -65,3 +65,77 @@ func TestCircleColor(t *testing.T) {
 		}
 	}
 }
+
+func TestDotColor(t *testing.T) {
+	cases := []struct {
+		in   Color
+		want Color
+	}{
+		{5, 5},
+		{4, 4},
+		{3, 3},
+		{2, 2},
+		{1, 1},
+	}
+
+	test_dot := Dot{}
+
+	for _, c := range cases {
+		test_dot.SetColor(c.in)
+		got := test_dot.color
+		if got != c.want {
+			t.Errorf("Expected %s, got %s", c.want, got)
+		}
+	}
+}
+
+func TestParalCenter(t *testing.T) {
+	cases := []struct {
+		in   Parallelogram
+		want Dot
+	}{
+		{Parallelogram{[4]Dot{{1, 1, 3}, {2, 4, 5}, {6, 4, 5}, {5, 1, 3}}}, Dot{3.5, 2.5, 3}},
+		{Parallelogram{[4]Dot{{3, 1, 3}, {2, 4, 5}, {6, 4, 5}, {7, 1, 3}}}, Dot{4.5, 2.5, 3}},
+		{Parallelogram{[4]Dot{{0, 1, 3}, {2, 4, 5}, {6, 4, 5}, {4, 1, 3}}}, Dot{3, 2.5, 2}},
+	}
+	for _, c := range cases {
+		got := c.in.FindCenter()
+		if got != c.want {
+			t.Errorf("Expected %v, got %v", c.want, got)
+		}
+	}
+}
+
+func TestParalPeak(t *testing.T) {
+	cases := []struct {
+		in   Parallelogram
+		want Dot
+	}{
+		{Parallelogram{[4]Dot{{1, 1, 3}, {2, 4, 5}, {6, 4, 5}, {5, 1, 3}}}, Dot{5, 1, 3}},
+		{Parallelogram{[4]Dot{{3, 1, 3}, {2, 4, 5}, {6, 4, 5}, {7, 1, 3}}}, Dot{7, 1, 4}},
+		{Parallelogram{[4]Dot{{0, 1, 3}, {2, 4, 5}, {6, 4, 5}, {4, 1, 3}}}, Dot{4, 1, 2}},
+	}
+	for _, c := range cases {
+		got := c.in.CalculatePeak()
+		if got != c.want {
+			t.Errorf("Expected %v, got %v", c.want, got)
+		}
+	}
+}
+
+func TestParalArea(t *testing.T) {
+	cases := []struct {
+		in   Parallelogram
+		want float64
+	}{
+		{Parallelogram{[4]Dot{{1, 1, 3}, {2, 4, 5}, {8, 4, 5}, {7, 1, 3}}}, 18},
+		{Parallelogram{[4]Dot{{3, 1, 3}, {2, 4, 5}, {6, 4, 5}, {7, 1, 3}}}, 12},
+		{Parallelogram{[4]Dot{{0, 1, 3}, {2, 4, 5}, {4, 4, 5}, {2, 1, 3}}}, 6},
+	}
+	for _, c := range cases {
+		got := c.in.CalculateArea()
+		if got != c.want {
+			t.Errorf("Expected %v, got %v", c.want, got)
+		}
+	}
+}

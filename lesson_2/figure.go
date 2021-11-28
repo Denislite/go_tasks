@@ -83,7 +83,7 @@ func (p Parallelogram) CalculateArea() float64 {
 	diag := math.Sqrt(math.Pow((p.peak[0].x-p.peak[2].x), 2) + math.Pow((p.peak[0].y-p.peak[2].y), 2))
 	halfper := (side_a + side_b + diag) / 2
 	area := 2 * math.Sqrt(halfper*(halfper-side_a)*(halfper-side_b)*(halfper-diag))
-	return area
+	return math.Round(area*100) / 100
 }
 
 func (p Parallelogram) FindCenter() Dot {
