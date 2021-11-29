@@ -38,7 +38,7 @@ func getSingleStudent(w http.ResponseWriter, r *http.Request) {
 
 func createStudent(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Endpoint Hit: create Student")
-	w.Header().Set("Content-Type", "appliction/json")
+	w.Header().Set("Content-Type", "application/json")
 	var student Student
 	_ = json.NewDecoder(r.Body).Decode(&student)
 	Students = append(Students, student)
